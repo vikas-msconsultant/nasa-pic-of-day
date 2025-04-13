@@ -1,3 +1,8 @@
+# live app can be accessed at below URL
+
+https://magenta-figolla-a82983.netlify.app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
