@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { picOfDay } from '../types/picOfDay';
 
+const NASAEndpointUri = process.env.REACT_APP_NASA_API_URL;
+const NASAApiKey = process.env.REACT_APP_NASA_API_KEY;
+
 export const usePicOfDay = (date:string) => {
     const [data, setData] = useState<picOfDay | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -11,12 +14,13 @@ export const usePicOfDay = (date:string) => {
             setLoading(true);
             setError(null);
             try{
-                const result = await fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`);                
+                console.log(`${NASAEndpointUri}?api_key=${NASAApiKey}&date=${date}`);
+                const result = await fetch(`${NASAEndpointUri}?api_key=${NASAApiKey}&date=${date}`);                
                 const resultJson = await result.json();
                 setData(resultJson);
             }
             catch(err){
-                setError("Failed to fetch pic of the day! please try againg after some time");
+                setError("Failed to fetch pic of the day! please try againg after some time" + err);
             }
             finally{
                 setLoading(false);
